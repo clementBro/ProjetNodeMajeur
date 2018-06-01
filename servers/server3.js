@@ -1,13 +1,10 @@
-const http = require('http');
-const express = require("express");
+const net = require('net');
 
-const port = 5003;
-const app = express();
+net.createServer(function (socket) {
 
-app.get("/", (req, res) => {
-    console.log("hello world on " + port);
-});
-
-const server = http.createServer(app);
-server.listen(port);
+    socket.on('data', function(data){
+        socket.write(data + " from 5003");
+        console.log(data + " from 5003")
+    })
+}).listen(5003);
 console.log("server3 is running on 5003");
