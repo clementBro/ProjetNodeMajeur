@@ -22,11 +22,11 @@ net.createServer(function (socket) {
 
     clientToServ.on('error', function(){
         console.log('distant server on port : ' + server.port + 'not found');
-        socket.close();
+        socket.write('distant server on port : ' + server.port + 'not found');
     });
     socket.on('error', function(){
-        console.log('client not found');
-        clientToServ.close();
+        console.log('server not found');
+        socket.write('server not found');
     });
 }).listen(5000);
 
