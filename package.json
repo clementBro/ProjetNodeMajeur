@@ -1,0 +1,24 @@
+{
+  "name": "support",
+  "version": "1.0.0",
+  "description": "Implémenter un serveur de load balancing (**HTTP** + **Websocket**). Le serveur doit accepter une liste de ports en variable d'environement ou argument de ligne de commande:",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "net": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loiczanotti/support_ionic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Loiczanotti/support_ionic/issues"
+  },
+  "homepage": "https://github.com/Loiczanotti/support_ionic#readme"
+}
