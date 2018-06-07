@@ -1,36 +1,30 @@
 const net = require('net');
 
-const serversAddresses = [
-    {address: '127.0.0.1', port: '5001'},
-    {address: '127.0.0.1', port: '5002'},
-    {address: '127.0.0.1', port: '5003'}
-];
+const PORTS =  [5001,5002,5003];
 
-net.createServer(function (socket) {
 
-    server = getRandomServer();
-    const clientToServ = net.connect({port: server.port, server: server.address});
-
-    socket.on('data', function(data){
-        console.log('socket data event');
-        clientToServ.write(data);
+net.createServer(function (client) {
+    let port = randomPort();
+    client.write('load_balancer connected go to server :' + port);
+    const clientToCHild = net.connect({port: port, host: '127.0.0.1'});
+    client.on('data', function(data){
+        clientToCHild.write(data)
     });
-    clientToServ.on('data', function(data){
-        console.log('clientToServ data event');
-        socket.write(data);
+    clientToCHild.on('data', function (dataToChild) {
+        client.write(dataToChild)
     });
-
-    clientToServ.on('error', function(){
-        console.log('distant server on port : ' + server.port + 'not found');
-        socket.write('distant server on port : ' + server.port + 'not found');
+    client.on('error', () => {
+        client.write('the client with not found');
+        clientToCHild.close();
+        this.close();
     });
-    socket.on('error', function(){
-        console.log('server not found');
-        socket.write('server not found');
+    clientToCHild.on('error',() =>  {
+        client.write('the server with port:' + port + ' not found');
+        client.close();
+        this.close();
     });
 }).listen(5000);
 
-function getRandomServer() {
-    return serversAddresses[Math.floor((Math.random() * 3))]
+function randomPort () {
+    return PORTS[Math.floor((Math.random() * 3))];
 }
-

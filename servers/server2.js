@@ -3,7 +3,7 @@ const net = require('net');
 net.createServer(function (socket) {
 
     socket.on('data', function(data){
-        socket.write(data + " from 5002");
+        socket.write("Votre ticket a été pris en compte par l'equipe de développement :\n " + data);
         console.log(data + " from 5002")
     })
 }).listen(5002);
