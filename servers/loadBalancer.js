@@ -21,7 +21,6 @@ app.post('/contact', function (req, res) {
     console.log(req.body);
     if(req.body.problem === "b"){
         port = 5001;
-        console.log('coucou port 5001');
     }
     else if(req.body.problem === "am"){
         port = 5002;
@@ -33,7 +32,6 @@ app.post('/contact', function (req, res) {
     clientToCHild.setEncoding('utf8');
     clientToCHild.write(req.body.textprob);
     clientToCHild.on('data', function (dataToChild) {
-        console.log('yolo');
         const db = new FirebaseService();
         db.addToFirebase(req.body).then( rep => {
             console.log(rep);

@@ -1,5 +1,4 @@
 const net = require('net');
-
 net.createServer(function (socket) {
 
     socket.on('data', function(data){

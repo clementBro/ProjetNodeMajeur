@@ -1,6 +1,3 @@
-const FirebaseService = require('../service/FirebaseService.js');
-
-
 const net = require('net');
 net.createServer(function (socket) {
     socket.setEncoding('utf8');
