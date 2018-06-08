@@ -7,13 +7,12 @@ class FirebaseService{
             credential: admin.credential.cert(serviceAccount),
             databaseURL: "https://barlyon-23ade.firebaseio.com"
         });
+        this.db = admin.database();
     }
 
     addToFirebase(data){
 
-        const db = admin.database();
-
-        const ref = db.ref("/");
+        const ref = this.db.ref("/");
         const itemsRef = ref.child("Ticket");
         const newItemRef = itemsRef.push();
         return newItemRef.set({
@@ -25,6 +24,14 @@ class FirebaseService{
             console.log(error);
         });
     }
+    getAllTickets(){
+
+        this.db.ref('/Tickets')
+            .once('value').then((result) => {
+                return result
+        })
+    }
+
 }
 module.exports = FirebaseService;
 
