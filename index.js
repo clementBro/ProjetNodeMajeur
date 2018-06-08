@@ -11,6 +11,15 @@ app.get("/", (req, res, next) => {
         }
     });
 });
+app.get("/ticket", (req, res, next) => {
+
+        res.sendFile(path.join(PUBLIC_FOLDER, "public/index.html"), {}, err => {
+            if (err) {
+                next(err);
+            }
+        });
+
+});
 app.use(express.static(PUBLIC_FOLDER));
 server.listen(8080, () => {
     console.log(`Server started on port ${server.address().port}`);

@@ -7,10 +7,13 @@
 <body>
     <nav>
         <button type="button" onclick="window.open('', '_self', ''); window.close();">Fermer</button>
+        <button type="button" onclick="loadTickets()">refresh</button>
     </nav>
     <h1>Les tickets</h1>
     <div>
         <ul id="ticketList"></ul>
     </div>
 </body>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script type="text/javascript" src="../ticket.js"></script>
 </html>
