@@ -1,3 +1,4 @@
+
 var conf = {
     apiKey: "AIzaSyBENvU1LmW5QK2yBL8cb92n2oxo9EjXNvs",
     authDomain: "barlyon-23ade.firebaseapp.com",
@@ -16,6 +17,7 @@ document.querySelector('#btnLogin').addEventListener('click', function(e) {
         var auth = firebase.auth();
         var currentUser = auth.currentUser;
         console.log(currentUser)
+        document.location.href="/ticket";
     }).catch(function(err) {
             // Handle errors
     });

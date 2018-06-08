@@ -11,6 +11,17 @@ app.get("/", (req, res, next) => {
         }
     });
 });
+app.get("/ticket", (req, res, next) => {
+    if(firebase.auth()){
+        res.sendFile(path.join(PUBLIC_FOLDER, "index.html"), {}, err => {
+            if (err) {
+                next(err);
+            }
+        });
+    }else{
+        res.redirect('/')
+    }
+});
 app.use(express.static(PUBLIC_FOLDER));
 server.listen(8080, () => {
     console.log(`Server started on port ${server.address().port}`);
