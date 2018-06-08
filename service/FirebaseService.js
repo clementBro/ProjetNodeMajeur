@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 serviceAccount = require("./serviceAccount.json");
+
 class FirebaseService{
 
     constructor(){
@@ -12,7 +13,6 @@ class FirebaseService{
     addToFirebase(data){
 
         const db = admin.database();
-
         const ref = db.ref("/");
         const itemsRef = ref.child("Ticket");
         const newItemRef = itemsRef.push();
@@ -25,6 +25,7 @@ class FirebaseService{
             console.log(error);
         });
     }
+
 }
 module.exports = FirebaseService;
 
